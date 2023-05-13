@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/src/core/colors.dart';
 import 'package:flutter_widgets/src/core/text_controls.dart';
-import 'package:flutter_widgets/src/features/home/models/home_model.dart';
+import 'package:flutter_widgets/src/features/catalog/models/catalog_model.dart';
 
-class DetailsPage extends StatelessWidget {
-  final HomeModel homeModel;
-  const DetailsPage({super.key, required this.homeModel});
+class TestPage extends StatelessWidget {
+  final CatalogModel catalogModel;
+
+  const TestPage({super.key, required this.catalogModel});
+  //const TestPage({Key? key, required this.catalogModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,21 +16,15 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: TextPlate(
-          text: homeModel.title,
+          text: catalogModel.title,
           size: 30,
           bold: true,
           color: Pallete.whiteColor,
         ),
         backgroundColor: Pallete.blueColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: TextPlateJustify(
-          text: homeModel.details,
-          size: 20,
-          bold: false,
-          color: Pallete.blueColor,
-        ),
+      body: Center(
+        child: catalogModel.test,
       ),
     );
   }

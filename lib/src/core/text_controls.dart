@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TextPlate extends StatelessWidget {
-  final String text;
-  final double size;
-  final bool bold;
-  final Color color;
   const TextPlate(
       {super.key,
       required this.text,
       required this.size,
       required this.bold,
       required this.color});
+  final String text;
+  final double size;
+  final bool bold;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

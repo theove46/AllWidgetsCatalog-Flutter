@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/src/core/assets.dart';
 import 'package:flutter_widgets/src/core/colors.dart';
+import 'package:flutter_widgets/src/core/routes/routing_constants.dart';
 import 'package:flutter_widgets/src/core/text_controls.dart';
 import 'package:flutter_widgets/src/features/home/models/home_model.dart';
-import 'package:flutter_widgets/src/features/home/pages/details_page.dart';
 
 class HomeItemCard extends StatelessWidget {
-  final HomeModel homeModel;
   const HomeItemCard({super.key, required this.homeModel});
+  final HomeModel homeModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
+        //Name Routing
+        Navigator.pushNamed(
           context,
-          MaterialPageRoute(
-            builder: (context) => DetailsPage(
-              homeModel: homeModel,
-            ),
-          ),
+          catalogPageRoute,
+          arguments: {
+            'catalogModel': homeModel.catalogModel,
+            'homeModel': homeModel,
+          },
         );
       },
       child: Padding(
@@ -42,9 +43,8 @@ class HomeItemCard extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 1,
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Pallete.blueColor,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10.0),
@@ -52,18 +52,18 @@ class HomeItemCard extends StatelessWidget {
                   ),
                 ),
                 child: Center(
-                    child: TextPlate(
-                        text: homeModel.title,
-                        size: 16,
-                        bold: true,
-                        color: Pallete.whiteColor) //custom text and style
-                    ),
+                  child: TextPlate(
+                    text: homeModel.title,
+                    size: 16,
+                    bold: true,
+                    color: Pallete.whiteColor,
+                  ),
+                ),
               ),
             )
           ]),
         ),
       ),
     );
-    //Text('data');
   }
 }
