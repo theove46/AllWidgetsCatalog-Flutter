@@ -7,7 +7,6 @@ class TestPage extends StatelessWidget {
   final CatalogModel catalogModel;
 
   const TestPage({super.key, required this.catalogModel});
-  //const TestPage({Key? key, required this.catalogModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

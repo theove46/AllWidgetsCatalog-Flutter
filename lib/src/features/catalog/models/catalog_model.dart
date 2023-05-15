@@ -14,7 +14,7 @@ class CatalogModel {
   final String details;
   final Widget test;
 
-  static List<CatalogModel> AssetsCatalog() => [
+  static List<CatalogModel> assetsCatalog() => [
         CatalogModel(
             title: 'Icon',
             icon: const Icon(Icons.insert_emoticon),
@@ -51,7 +51,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> BasicCatalog() => [
+  static List<CatalogModel> basicCatalog() => [
         CatalogModel(
           title: 'AppBar',
           icon: const Icon(Icons.indeterminate_check_box),
@@ -217,7 +217,7 @@ class CatalogModel {
             )),
       ];
 
-  static List<CatalogModel> InputCatalog() => [
+  static List<CatalogModel> inputCatalog() => [
         CatalogModel(
           title: 'Form',
           icon: const Icon(Icons.format_align_center),
@@ -298,7 +298,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> InteractionCatalog() => [
+  static List<CatalogModel> interactionCatalog() => [
         CatalogModel(
           title: 'GestureDetector',
           icon: const Icon(Icons.tap_and_play),
@@ -346,7 +346,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> LayoutCatalog() => [
+  static List<CatalogModel> layoutCatalog() => [
         CatalogModel(
             title: 'Align',
             icon: const Icon(Icons.align_horizontal_center_outlined),
@@ -774,66 +774,253 @@ class CatalogModel {
             )),
       ];
 
-  static List<CatalogModel> MaterialCatalog() => [
+  static List<CatalogModel> materialCatalog() => [
         CatalogModel(
           title: 'IconButton',
           icon: const Icon(Icons.smart_button_sharp),
           details: 'A Material Design icon button.',
-          test: const Text('Widget'),
+          test: IconButton(
+            icon: const Icon(Icons.volume_up),
+            tooltip: 'Increase volume by 10',
+            onPressed: () {},
+          ),
         ),
         CatalogModel(
           title: 'ProgressIndicator',
           icon: const Icon(Icons.downloading),
           details:
               'A Material Design linear progress indicator, also known as a progress bar.',
-          test: const Text('Widget'),
+          test: const LinearProgressIndicator(
+            value: 20,
+            semanticsLabel: 'Linear progress indicator',
+          ),
         ),
         CatalogModel(
-          title: 'SnackBar',
-          icon: const Icon(Icons.ballot_rounded),
-          details:
-              'A lightweight message with an optional action which briefly displays at the bottom of the screen.',
-          test: const Text('Widget'),
-        ),
+            title: 'SnackBar',
+            icon: const Icon(Icons.ballot_rounded),
+            details:
+                'A lightweight message with an optional action which briefly displays at the bottom of the screen.',
+            test: ElevatedButton(
+              child: const Text('Show Snackbar'),
+              onPressed: () {
+                //ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Awesome Snackbar!'),
+                  action: SnackBarAction(
+                    label: 'Action',
+                    onPressed: () {
+                      // Code to execute.
+                    },
+                  ),
+                );
+                //);
+              },
+            )),
         CatalogModel(
           title: 'Card',
           icon: const Icon(Icons.card_membership_outlined),
           details:
               'A Material Design card: a panel with slightly rounded corners and an elevation shadow.',
-          test: const Text('Widget'),
+          test: Card(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.album),
+                  title: Text('The Enchanted Nightingale'),
+                  subtitle:
+                      Text('Music by Julie Gable. Lyrics by Sidney Stein.'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton(
+                      child: const Text('BUY TICKETS'),
+                      onPressed: () {/* ... */},
+                    ),
+                    const SizedBox(width: 8),
+                    TextButton(
+                      child: const Text('LISTEN'),
+                      onPressed: () {/* ... */},
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
         CatalogModel(
-          title: 'Dialog',
-          icon: const Icon(Icons.quick_contacts_dialer_outlined),
-          details: 'A Material Design alert dialog.',
-          test: const Text('Widget'),
-        ),
+            title: 'Dialog',
+            icon: const Icon(Icons.quick_contacts_dialer_outlined),
+            details: 'A Material Design alert dialog.',
+            test: AlertDialog(
+              title: const Text('AlertDialog Title'),
+              content: const SingleChildScrollView(
+                child: ListBody(
+                  children: <Widget>[
+                    Text('This is a demo alert dialog.'),
+                    Text('Would you like to approve of this message?'),
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                TextButton(
+                  child: const Text('Approve'),
+                  onPressed: () {},
+                ),
+              ],
+            )),
         CatalogModel(
           title: 'Divider',
           icon: const Icon(Icons.safety_divider),
           details: 'A thin horizontal line, with padding on either side.',
-          test: const Text('Widget'),
+          test: Column(
+            children: <Widget>[
+              const Expanded(
+                child: ColoredBox(
+                  color: Colors.amber,
+                  child: Center(
+                    child: Text('Above'),
+                  ),
+                ),
+              ),
+              const Divider(
+                height: 20,
+                thickness: 5,
+                indent: 20,
+                endIndent: 0,
+                color: Colors.black,
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 20),
+                child: const Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    'Subheader',
+                    textAlign: TextAlign.start,
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: ColoredBox(
+                  color: Pallete.blueColor,
+                  child: Center(
+                    child: Text('Below'),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         CatalogModel(
           title: 'List',
           icon: const Icon(Icons.list),
           details:
               'A single fixed-height row that typically contains some text as well as a leading or trailing icon.',
-          test: const Text('Widget'),
+          test: ListView(
+            children: const <Widget>[
+              Card(child: ListTile(title: Text('One-line ListTile'))),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(),
+                  title: Text('One-line with leading widget'),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('One-line with trailing widget'),
+                  trailing: Icon(Icons.more_vert),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(),
+                  title: Text('One-line with both widgets'),
+                  trailing: Icon(Icons.more_vert),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  title: Text('One-line dense ListTile'),
+                  dense: true,
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 56.0),
+                  title: Text('Two-line ListTile'),
+                  subtitle: Text('Here is a second line'),
+                  trailing: Icon(Icons.more_vert),
+                ),
+              ),
+              Card(
+                child: ListTile(
+                  leading: FlutterLogo(size: 72.0),
+                  title: Text('Three-line ListTile'),
+                  subtitle: Text(
+                      'A sufficiently long subtitle warrants three lines.'),
+                  trailing: Icon(Icons.more_vert),
+                  isThreeLine: true,
+                ),
+              ),
+            ],
+          ),
         ),
         CatalogModel(
           title: 'AppBar',
           icon: const Icon(Icons.linear_scale),
           details: 'A Material Design app bar.',
-          test: const Text('Widget'),
+          test: Scaffold(
+            appBar: AppBar(
+              title: const Text('AppBar Demo'),
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.add_alert),
+                  tooltip: 'Show Snackbar',
+                  onPressed: () {},
+                ),
+                IconButton(
+                  icon: const Icon(Icons.navigate_next),
+                  tooltip: 'Go to the next page',
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
         ),
         CatalogModel(
-          title: 'BottomAppBar',
-          icon: const Icon(Icons.blur_linear),
-          details:
-              'A container that is typically used with Scaffold.bottomNavigationBar.',
-          test: const Text('Widget'),
-        ),
+            title: 'BottomAppBar',
+            icon: const Icon(Icons.blur_linear),
+            details:
+                'A container that is typically used with Scaffold.bottomNavigationBar.',
+            test: BottomAppBar(
+              //shape: shape,
+              color: Colors.blue,
+              child: IconTheme(
+                data: const IconThemeData(color: Pallete.blueColor),
+                child: Row(
+                  children: <Widget>[
+                    IconButton(
+                      tooltip: 'Open navigation menu',
+                      icon: const Icon(Icons.menu),
+                      onPressed: () {},
+                    ),
+                    //if (centerLocations.contains(fabLocation)) const Spacer(),
+                    IconButton(
+                      tooltip: 'Search',
+                      icon: const Icon(Icons.search),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      tooltip: 'Favorite',
+                      icon: const Icon(Icons.favorite),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+            )),
         CatalogModel(
           title: 'NavigationBar',
           icon: const Icon(Icons.backup_table_rounded),
@@ -896,7 +1083,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> EffectsCatalog() => [
+  static List<CatalogModel> effectsCatalog() => [
         CatalogModel(
           title: 'ClipOval',
           icon: const Icon(Icons.crop),
@@ -917,7 +1104,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> ScrollingCatalog() => [
+  static List<CatalogModel> scrollingCatalog() => [
         CatalogModel(
           title: 'CustomScrollView',
           icon: const Icon(Icons.screen_lock_portrait),
@@ -968,7 +1155,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> StylingCatalog() => [
+  static List<CatalogModel> stylingCatalog() => [
         CatalogModel(
           title: 'MediaQuery',
           icon: const Icon(Icons.perm_media),
@@ -1001,7 +1188,7 @@ class CatalogModel {
         ),
       ];
 
-  static List<CatalogModel> TextCatalog() => [
+  static List<CatalogModel> textCatalog() => [
         CatalogModel(
           title: 'DefaultTextStyle',
           icon: const Icon(Icons.text_format),

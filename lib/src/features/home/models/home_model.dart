@@ -18,58 +18,58 @@ class HomeModel {
             title: 'Assets',
             icon: const Icon(Icons.web_asset),
             details: 'Manage assets, display images, and show icons.',
-            catalogModel: CatalogModel.AssetsCatalog()),
+            catalogModel: CatalogModel.assetsCatalog()),
         HomeModel(
             title: 'Basics',
             icon: const Icon(Icons.edit),
             details:
                 'Widgets you absolutely need to know before building your first Flutter app.',
-            catalogModel: CatalogModel.BasicCatalog()),
+            catalogModel: CatalogModel.basicCatalog()),
         HomeModel(
             title: 'Input',
             icon: const Icon(Icons.input),
             details:
                 'Take user input in addition to input widgets in Material Components and Cupertino.',
-            catalogModel: CatalogModel.InputCatalog()),
+            catalogModel: CatalogModel.inputCatalog()),
         HomeModel(
             title: 'Interaction',
             icon: const Icon(Icons.interpreter_mode),
             details:
                 'Respond to touch events and route users to different views.',
-            catalogModel: CatalogModel.InteractionCatalog()),
+            catalogModel: CatalogModel.interactionCatalog()),
         HomeModel(
             title: 'Layout',
             icon: const Icon(Icons.layers),
             details:
                 'Arrange other widgets columns, rows, grids, and many other layouts.',
-            catalogModel: CatalogModel.LayoutCatalog()),
+            catalogModel: CatalogModel.layoutCatalog()),
         HomeModel(
             title: 'Material',
             icon: const Icon(Icons.backup_table),
             details:
                 'Visual, behavioral, and motion-rich widgets implementing the Material Design guidelines.',
-            catalogModel: CatalogModel.MaterialCatalog()),
+            catalogModel: CatalogModel.materialCatalog()),
         HomeModel(
             title: 'Effects',
             icon: const Icon(Icons.design_services),
             details:
                 'These widgets apply visual effects to the children without changing their layout, size, or position.',
-            catalogModel: CatalogModel.EffectsCatalog()),
+            catalogModel: CatalogModel.effectsCatalog()),
         HomeModel(
             title: 'Scrolling',
             icon: const Icon(Icons.screenshot),
             details: 'Scroll multiple widgets as children of the parent.',
-            catalogModel: CatalogModel.ScrollingCatalog()),
+            catalogModel: CatalogModel.scrollingCatalog()),
         HomeModel(
             title: 'Styling',
             icon: const Icon(Icons.style),
             details:
                 'Manage the theme of your app, makes your app responsive to screen sizes, or add padding.',
-            catalogModel: CatalogModel.StylingCatalog()),
+            catalogModel: CatalogModel.stylingCatalog()),
         HomeModel(
             title: 'Text',
             icon: const Icon(Icons.text_fields),
             details: 'Display and style text.',
-            catalogModel: CatalogModel.TextCatalog()),
+            catalogModel: CatalogModel.textCatalog()),
       ];
 }

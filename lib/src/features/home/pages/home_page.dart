@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const TextPlate(
-          text: 'Flutter Widgets',
+          text: "Flutter Widgets",
           size: 30,
           bold: true,
           color: Pallete.whiteColor,

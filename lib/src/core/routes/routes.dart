@@ -10,7 +10,7 @@ import 'package:flutter_widgets/src/features/test/pages/test_pages.dart';
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case homePageRoute:
-      return MaterialPageRoute(builder: (context) => HomePage());
+      return MaterialPageRoute(builder: (context) => const HomePage());
 
     case catalogPageRoute:
       final args = settings.arguments as Map<String, dynamic>;
@@ -30,11 +30,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (context) => TestPage(
                 catalogModel: settings.arguments as CatalogModel,
-              )
-          //ItemPage(catalogModel: settings.arguments as CatalogModel)
-          );
+              ));
 
     default:
-      return MaterialPageRoute(builder: (context) => HomePage());
+      return MaterialPageRoute(builder: (context) => const HomePage());
   }
 }

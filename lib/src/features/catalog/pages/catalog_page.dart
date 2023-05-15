@@ -32,7 +32,7 @@ class CatalogPage extends StatelessWidget {
             size: 30,
             color: Pallete.whiteColor,
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           )
         ],
