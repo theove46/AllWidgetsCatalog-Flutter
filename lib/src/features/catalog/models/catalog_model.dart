@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_widgets/src/core/colors.dart';
 
@@ -1022,137 +1024,412 @@ class CatalogModel {
               ),
             )),
         CatalogModel(
-          title: 'NavigationBar',
-          icon: const Icon(Icons.backup_table_rounded),
-          details:
-              'Navigation bars offer a persistent and convenient way to switch between primary destinations in an app.',
-          test: const Text('Widget'),
-        ),
+            title: 'NavigationBar',
+            icon: const Icon(Icons.backup_table_rounded),
+            details:
+                'Navigation bars offer a persistent and convenient way to switch between primary destinations in an app.',
+            test: Scaffold(
+              bottomNavigationBar: NavigationBar(
+                onDestinationSelected: (int index) {},
+                selectedIndex: 0,
+                destinations: const <Widget>[
+                  NavigationDestination(
+                    icon: Icon(Icons.explore),
+                    label: 'Explore',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.commute),
+                    label: 'Commute',
+                  ),
+                  NavigationDestination(
+                    selectedIcon: Icon(Icons.bookmark),
+                    icon: Icon(Icons.bookmark_border),
+                    label: 'Saved',
+                  ),
+                ],
+              ),
+              body: <Widget>[
+                Container(
+                  color: Colors.red,
+                  alignment: Alignment.center,
+                  child: const Text('Page 1'),
+                ),
+                Container(
+                  color: Colors.green,
+                  alignment: Alignment.center,
+                  child: const Text('Page 2'),
+                ),
+                Container(
+                  color: Colors.blue,
+                  alignment: Alignment.center,
+                  child: const Text('Page 3'),
+                ),
+              ][0],
+            )),
         CatalogModel(
           title: 'CheckBox',
           icon: const Icon(Icons.check_box),
           details: 'A Material Design checkbox.',
-          test: const Text('Widget'),
+          test: const Text('Checkbox'),
         ),
         CatalogModel(
           title: 'DatePicker',
           icon: const Icon(Icons.date_range),
           details: 'Shows a dialog containing a Material Design date picker.',
-          test: const Text('Widget'),
+          test: const Text('Date picker'),
         ),
         CatalogModel(
           title: 'Menu',
           icon: const Icon(Icons.menu),
           details:
               'Displays a menu when pressed and calls onSelected when the menu is dismissed because an item was selected. The value passed to onSelected is the value of the selected menu item.',
-          test: const Text('Widget'),
+          test: const Text('Menu'),
         ),
         CatalogModel(
           title: 'RadioButton',
           icon: const Icon(Icons.radio_button_checked),
           details: 'A Material Design radio button.',
-          test: const Text('Widget'),
+          test: const Text('Radio Button'),
         ),
         CatalogModel(
           title: 'Slider',
           icon: const Icon(Icons.slideshow),
           details:
               'A Material Design slider. Used to select from a range of values.',
-          test: const Text('Widget'),
+          test: Slider(
+            value: 0,
+            max: 100,
+            divisions: 5,
+            label: 0.round().toString(),
+            onChanged: (double value) {},
+          ),
         ),
         CatalogModel(
-          title: 'Switch',
-          icon: const Icon(Icons.switch_access_shortcut),
-          details:
-              'A Material Design switch. Used to toggle the on/off state of a single setting.',
-          test: const Text('Widget'),
-        ),
+            title: 'Switch',
+            icon: const Icon(Icons.switch_access_shortcut),
+            details:
+                'A Material Design switch. Used to toggle the on/off state of a single setting.',
+            test: Switch(
+              // This bool value toggles the switch.
+              value: true,
+              activeColor: Colors.red,
+              onChanged: (bool value) {},
+            )),
         CatalogModel(
           title: 'TimePicker',
           icon: const Icon(Icons.share_arrival_time_outlined),
           details:
               'Shows a dialog containing a Material Design time picker. The returned Future resolves to the time selected by the user when the user closes the dialog. If the user cancels the dialog, null is returned.',
-          test: const Text('Widget'),
+          test: const Text('Time picker'),
         ),
         CatalogModel(
-          title: 'TextField',
-          icon: const Icon(Icons.table_view),
-          details:
-              'A Material Design text field. A text field lets the user enter text, either with hardware keyboard or with an onscreen keyboard.',
-          test: const Text('Widget'),
-        ),
+            title: 'TextField',
+            icon: const Icon(Icons.table_view),
+            details:
+                'A Material Design text field. A text field lets the user enter text, either with hardware keyboard or with an onscreen keyboard.',
+            test: const SizedBox(
+              width: 250,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Password',
+                ),
+              ),
+            )),
       ];
 
   static List<CatalogModel> effectsCatalog() => [
         CatalogModel(
-          title: 'ClipOval',
-          icon: const Icon(Icons.crop),
-          details: 'A widget that clips its child using an oval.',
-          test: const Text('Widget'),
-        ),
+            title: 'Backdrop',
+            icon: const Icon(Icons.backspace),
+            details: 'A widget that clips its child using an oval.',
+            test: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                Text('0' * 10000),
+                Center(
+                  child: ClipRect(
+                    // <-- clips to the 200x200 [Container] below
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 5.0,
+                        sigmaY: 5.0,
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 200.0,
+                        height: 200.0,
+                        child: const Text('Hello World'),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )),
         CatalogModel(
-          title: 'ClipRect',
-          icon: const Icon(Icons.rectangle_outlined),
-          details: 'A widget that clips its child using a rectangle.',
-          test: const Text('Widget'),
-        ),
+            title: 'ClipRect',
+            icon: const Icon(Icons.rectangle_outlined),
+            details: 'A widget that clips its child using a rectangle.',
+            test: ClipRect(
+              child: Align(
+                alignment: Alignment.topCenter,
+                heightFactor: 0.5,
+                child: Image.network(
+                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+              ),
+            )),
         CatalogModel(
-          title: 'Opacity',
-          icon: const Icon(Icons.opacity),
-          details: 'A widget that makes its child partially transparent.',
-          test: const Text('Widget'),
-        ),
+            title: 'DecoratedBox',
+            icon: const Icon(Icons.deck_outlined),
+            details: 'A widget that makes its child partially transparent.',
+            test: const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment(-0.5, -0.6),
+                  radius: 0.45,
+                  colors: <Color>[
+                    Color(0xFFEEEEEE),
+                    Color(0xFF111133),
+                  ],
+                  stops: <double>[0.9, 1.0],
+                ),
+              ),
+            )),
+        CatalogModel(
+            title: 'Opacity',
+            icon: const Icon(Icons.opacity),
+            details: 'A widget that makes its child partially transparent.',
+            test: const Opacity(
+              opacity: 0.5,
+              child: Text("Now you see me, now you don't!"),
+            )),
+        CatalogModel(
+            title: 'RotatedBox',
+            icon: const Icon(Icons.rotate_90_degrees_ccw),
+            details: 'A widget that makes its child partially transparent.',
+            test: const RotatedBox(
+              quarterTurns: 3,
+              child: Text('Hello World!'),
+            )),
       ];
 
   static List<CatalogModel> scrollingCatalog() => [
         CatalogModel(
-          title: 'CustomScrollView',
-          icon: const Icon(Icons.screen_lock_portrait),
-          details:
-              'A ScrollView that creates custom scroll effects using slivers.',
-          test: const Text('Widget'),
-        ),
+            title: 'CustomScrollView',
+            icon: const Icon(Icons.screen_lock_portrait),
+            details:
+                'A ScrollView that creates custom scroll effects using slivers.',
+            test: CustomScrollView(
+              slivers: <Widget>[
+                const SliverAppBar(
+                  pinned: true,
+                  expandedHeight: 250.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Text('Demo'),
+                  ),
+                ),
+                SliverGrid(
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200.0,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                    childAspectRatio: 4.0,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return Container(
+                        alignment: Alignment.center,
+                        color: Colors.teal[100 * (index % 9)],
+                        child: Text('Grid Item $index'),
+                      );
+                    },
+                    childCount: 20,
+                  ),
+                ),
+                SliverFixedExtentList(
+                  itemExtent: 50.0,
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      return Container(
+                        alignment: Alignment.center,
+                        color: Colors.lightBlue[100 * (index % 9)],
+                        child: Text('List Item $index'),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            )),
         CatalogModel(
-          title: 'GridView',
-          icon: const Icon(Icons.face),
-          details:
-              'A grid list consists of a repeated pattern of cells arrayed in a vertical and horizontal layout. The GridView widget implements this component.',
-          test: const Text('Widget'),
-        ),
+            title: 'GridView',
+            icon: const Icon(Icons.face),
+            details:
+                'A grid list consists of a repeated pattern of cells arrayed in a vertical and horizontal layout. The GridView widget implements this component.',
+            test: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(20),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              crossAxisCount: 2,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[100],
+                  child: const Text("He'd have you all unravel at the"),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[200],
+                  child: const Text('Heed not the rabble'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[300],
+                  child: const Text('Sound of screams but the'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[400],
+                  child: const Text('Who scream'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[500],
+                  child: const Text('Revolution is coming...'),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  color: Colors.teal[600],
+                  child: const Text('Revolution, they...'),
+                ),
+              ],
+            )),
         CatalogModel(
-          title: 'ListView',
-          icon: const Icon(Icons.list_alt_sharp),
-          details:
-              'A scrollable, linear list of widgets. ListView is the most commonly used scrolling widget. It displays its children one after another in the scroll direction',
-          test: const Text('Widget'),
-        ),
+            title: 'ListView',
+            icon: const Icon(Icons.list_alt_sharp),
+            details:
+                'A scrollable, linear list of widgets. ListView is the most commonly used scrolling widget. It displays its children one after another in the scroll direction',
+            test: ListView(
+              padding: const EdgeInsets.all(8),
+              children: <Widget>[
+                Container(
+                  height: 50,
+                  color: Colors.amber[600],
+                  child: const Center(child: Text('Entry A')),
+                ),
+                Container(
+                  height: 50,
+                  color: Colors.amber[500],
+                  child: const Center(child: Text('Entry B')),
+                ),
+                Container(
+                  height: 50,
+                  color: Colors.amber[100],
+                  child: const Center(child: Text('Entry C')),
+                ),
+              ],
+            )),
         CatalogModel(
-          title: 'PageView',
-          icon: const Icon(Icons.pages),
+          title: 'NestedScrollView',
+          icon: const Icon(Icons.nest_cam_wired_stand_outlined),
           details: 'A scrollable list that works page by page.',
-          test: const Text('Widget'),
+          test: NestedScrollView(
+            // Setting floatHeaderSlivers to true is required in order to float
+            // the outer slivers over the inner scrollable.
+            floatHeaderSlivers: true,
+            headerSliverBuilder:
+                (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  title: const Text('Floating Nested SliverAppBar'),
+                  floating: true,
+                  expandedHeight: 200.0,
+                  forceElevated: innerBoxIsScrolled,
+                ),
+              ];
+            },
+            body: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: 30,
+                itemBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    height: 50,
+                    child: Center(child: Text('Item $index')),
+                  );
+                }),
+          ),
         ),
         CatalogModel(
-          title: 'Scrollable',
-          icon: const Icon(Icons.screenshot),
-          details:
-              'Scrollable implements the interaction model for a scrollable widget, including gesture recognition, but does not have an opinion about how the viewport, which actually displays.',
-          test: const Text('Widget'),
-        ),
+            title: 'PageView',
+            icon: const Icon(Icons.pages),
+            details: 'A scrollable list that works page by page.',
+            test: PageView(
+              /// [PageView.scrollDirection] defaults to [Axis.horizontal].
+              /// Use [Axis.vertical] to scroll vertically.
+              //controller: controller,
+              children: const <Widget>[
+                Center(
+                  child: Text('First Page'),
+                ),
+                Center(
+                  child: Text('Second Page'),
+                ),
+                Center(
+                  child: Text('Third Page'),
+                ),
+              ],
+            )),
         CatalogModel(
-          title: 'Scrollbar',
-          icon: const Icon(Icons.ballot_rounded),
-          details:
-              'AA Material Design scrollbar. A scrollbar indicates which portion of a Scrollable widget is actually visible.',
-          test: const Text('Widget'),
-        ),
+            title: 'Scrollbar',
+            icon: const Icon(Icons.ballot_rounded),
+            details:
+                'A Material Design scrollbar. A scrollbar indicates which portion of a Scrollable widget is actually visible.',
+            test: Scrollbar(
+              thumbVisibility: true,
+              //controller: _firstController,
+              child: ListView.builder(
+                  //controller: _firstController,
+                  itemCount: 100,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Scrollable 1 : Index $index'),
+                    );
+                  }),
+            )),
         CatalogModel(
-          title: 'SingleChildScrollView',
-          icon: const Icon(Icons.splitscreen_outlined),
-          details:
-              'A box in which a single widget can be scrolled. This widget is useful when you have a single box that will normally be entirely.',
-          test: const Text('Widget'),
-        ),
+            title: 'SingleChildScrollView',
+            icon: const Icon(Icons.splitscreen_outlined),
+            details:
+                'A box in which a single widget can be scrolled. This widget is useful when you have a single box that will normally be entirely.',
+            test: SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  minHeight: 100,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      // A fixed-height child.
+                      color: const Color(0xffeeee00), // Yellow
+                      height: 120.0,
+                      alignment: Alignment.center,
+                      child: const Text('Fixed Height Content'),
+                    ),
+                    Container(
+                      // Another fixed-height child.
+                      color: const Color(0xff008000), // Green
+                      height: 120.0,
+                      alignment: Alignment.center,
+                      child: const Text('Fixed Height Content'),
+                    ),
+                  ],
+                ),
+              ),
+            )),
       ];
 
   static List<CatalogModel> stylingCatalog() => [
